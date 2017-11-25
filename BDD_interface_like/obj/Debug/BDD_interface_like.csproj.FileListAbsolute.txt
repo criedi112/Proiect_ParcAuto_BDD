@@ -1,0 +1,13 @@
+c:\users\eduar\Desktop\Programe\BDD_interface_like\BDD_interface_like\bin\Debug\BDD_interface_like.exe.config
+c:\users\eduar\Desktop\Programe\BDD_interface_like\BDD_interface_like\bin\Debug\BDD_interface_like.exe
+c:\users\eduar\Desktop\Programe\BDD_interface_like\BDD_interface_like\bin\Debug\BDD_interface_like.pdb
+c:\users\eduar\Desktop\Programe\BDD_interface_like\BDD_interface_like\bin\Debug\MetroFramework.dll
+c:\users\eduar\Desktop\Programe\BDD_interface_like\BDD_interface_like\bin\Debug\MetroFramework.Fonts.dll
+c:\users\eduar\Desktop\Programe\BDD_interface_like\BDD_interface_like\obj\Debug\BDD_interface_like.Form1.resources
+c:\users\eduar\Desktop\Programe\BDD_interface_like\BDD_interface_like\obj\Debug\BDD_interface_like.Properties.Resources.resources
+c:\users\eduar\Desktop\Programe\BDD_interface_like\BDD_interface_like\obj\Debug\BDD_interface_like.csproj.GenerateResource.Cache
+c:\users\eduar\Desktop\Programe\BDD_interface_like\BDD_interface_like\obj\Debug\BDD_interface_like.csproj.CoreCompileInputs.cache
+c:\users\eduar\Desktop\Programe\BDD_interface_like\BDD_interface_like\obj\Debug\BDD_interface_like.exe
+c:\users\eduar\Desktop\Programe\BDD_interface_like\BDD_interface_like\obj\Debug\BDD_interface_like.pdb
+c:\users\eduar\Desktop\Programe\BDD_interface_like\BDD_interface_like\obj\Debug\BDD_interface_like.Form_Cautare.resources
+C:\Users\eduar\Desktop\Programe\BDD_interface_like\BDD_interface_like\obj\Debug\BDD_interface_like.csprojResolveAssemblyReference.cache
