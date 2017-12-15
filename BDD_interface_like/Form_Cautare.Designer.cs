@@ -36,8 +36,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox_Model = new System.Windows.Forms.ComboBox();
             this.comboBox_An1 = new System.Windows.Forms.ComboBox();
-            this.comboBox_Pret1 = new System.Windows.Forms.ComboBox();
-            this.comboBox_Pret2 = new System.Windows.Forms.ComboBox();
             this.comboBox_An2 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -58,6 +56,8 @@
             this.checkBox_volan_multifunctional = new System.Windows.Forms.CheckBox();
             this.checkBox_adaptive_cruise = new System.Windows.Forms.CheckBox();
             this.button_start_cautare = new System.Windows.Forms.Button();
+            this.textBox_pret1 = new System.Windows.Forms.TextBox();
+            this.textBox_pret2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,22 +122,6 @@
             this.comboBox_An1.Size = new System.Drawing.Size(152, 21);
             this.comboBox_An1.TabIndex = 6;
             // 
-            // comboBox_Pret1
-            // 
-            this.comboBox_Pret1.FormattingEnabled = true;
-            this.comboBox_Pret1.Location = new System.Drawing.Point(104, 146);
-            this.comboBox_Pret1.Name = "comboBox_Pret1";
-            this.comboBox_Pret1.Size = new System.Drawing.Size(152, 21);
-            this.comboBox_Pret1.TabIndex = 7;
-            // 
-            // comboBox_Pret2
-            // 
-            this.comboBox_Pret2.FormattingEnabled = true;
-            this.comboBox_Pret2.Location = new System.Drawing.Point(295, 146);
-            this.comboBox_Pret2.Name = "comboBox_Pret2";
-            this.comboBox_Pret2.Size = new System.Drawing.Size(148, 21);
-            this.comboBox_Pret2.TabIndex = 8;
-            // 
             // comboBox_An2
             // 
             this.comboBox_An2.FormattingEnabled = true;
@@ -177,7 +161,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 210);
+            this.label6.Location = new System.Drawing.Point(18, 211);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 13);
             this.label6.TabIndex = 13;
@@ -186,7 +170,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(24, 242);
+            this.label7.Location = new System.Drawing.Point(37, 242);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(33, 13);
             this.label7.TabIndex = 14;
@@ -260,7 +244,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(27, 310);
+            this.label9.Location = new System.Drawing.Point(32, 310);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 13);
             this.label9.TabIndex = 22;
@@ -324,11 +308,27 @@
             this.button_start_cautare.UseVisualStyleBackColor = true;
             this.button_start_cautare.Click += new System.EventHandler(this.button_start_cautare_Click);
             // 
+            // textBox_pret1
+            // 
+            this.textBox_pret1.Location = new System.Drawing.Point(104, 149);
+            this.textBox_pret1.Name = "textBox_pret1";
+            this.textBox_pret1.Size = new System.Drawing.Size(152, 20);
+            this.textBox_pret1.TabIndex = 29;
+            // 
+            // textBox_pret2
+            // 
+            this.textBox_pret2.Location = new System.Drawing.Point(295, 149);
+            this.textBox_pret2.Name = "textBox_pret2";
+            this.textBox_pret2.Size = new System.Drawing.Size(148, 20);
+            this.textBox_pret2.TabIndex = 30;
+            // 
             // Form_Cautare
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(524, 379);
+            this.Controls.Add(this.textBox_pret2);
+            this.Controls.Add(this.textBox_pret1);
             this.Controls.Add(this.button_start_cautare);
             this.Controls.Add(this.checkBox_adaptive_cruise);
             this.Controls.Add(this.checkBox_volan_multifunctional);
@@ -349,8 +349,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.comboBox_An2);
-            this.Controls.Add(this.comboBox_Pret2);
-            this.Controls.Add(this.comboBox_Pret1);
             this.Controls.Add(this.comboBox_An1);
             this.Controls.Add(this.comboBox_Model);
             this.Controls.Add(this.label4);
@@ -375,8 +373,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox_Model;
         private System.Windows.Forms.ComboBox comboBox_An1;
-        private System.Windows.Forms.ComboBox comboBox_Pret1;
-        private System.Windows.Forms.ComboBox comboBox_Pret2;
         private System.Windows.Forms.ComboBox comboBox_An2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -397,5 +393,7 @@
         private System.Windows.Forms.CheckBox checkBox_volan_multifunctional;
         private System.Windows.Forms.CheckBox checkBox_adaptive_cruise;
         private System.Windows.Forms.Button button_start_cautare;
+        private System.Windows.Forms.TextBox textBox_pret1;
+        private System.Windows.Forms.TextBox textBox_pret2;
     }
 }
