@@ -191,6 +191,7 @@ namespace BDD_interface_like
             {
                 this.Close();
                MessageBox.Show("Campuri Incomplete !", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             
             var masina = new Masini

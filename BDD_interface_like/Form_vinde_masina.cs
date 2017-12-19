@@ -67,6 +67,13 @@ namespace BDD_interface_like
                 Data = DateTime.Now
             };
 
+            var car = from db in context.Masinis
+                      where db.VIN.Equals(vvv)
+                      select db;
+            foreach (var masina in car )
+            {
+                context.Masinis.DeleteOnSubmit(masina);
+            }
             context.Vanzaris.InsertOnSubmit(contract);
             context.SubmitChanges();
             this.Close();

@@ -37,13 +37,13 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
+            chartArea1.Name = "Profituri Lunare";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(-30, 0);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
+            series1.ChartArea = "Profituri Lunare";
             series1.Legend = "Legend1";
             series1.Name = "Profituri Lunare";
             series1.XValueMember = "X";
@@ -53,6 +53,7 @@
             this.chart1.Size = new System.Drawing.Size(608, 336);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
+            this.chart1.Click += new System.EventHandler(this.chart1_Click);
             // 
             // Form_Grafic
             // 
