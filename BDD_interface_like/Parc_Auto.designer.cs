@@ -33,18 +33,21 @@ namespace BDD_interface_like
     partial void InsertAngajati(Angajati instance);
     partial void UpdateAngajati(Angajati instance);
     partial void DeleteAngajati(Angajati instance);
+    partial void InsertCars_Issue(Cars_Issue instance);
+    partial void UpdateCars_Issue(Cars_Issue instance);
+    partial void DeleteCars_Issue(Cars_Issue instance);
     partial void InsertIssue(Issue instance);
     partial void UpdateIssue(Issue instance);
     partial void DeleteIssue(Issue instance);
     partial void InsertMasini(Masini instance);
     partial void UpdateMasini(Masini instance);
     partial void DeleteMasini(Masini instance);
-    partial void InsertSupplier(Supplier instance);
-    partial void UpdateSupplier(Supplier instance);
-    partial void DeleteSupplier(Supplier instance);
     partial void InsertOptiuni(Optiuni instance);
     partial void UpdateOptiuni(Optiuni instance);
     partial void DeleteOptiuni(Optiuni instance);
+    partial void InsertSupplier(Supplier instance);
+    partial void UpdateSupplier(Supplier instance);
+    partial void DeleteSupplier(Supplier instance);
     partial void InsertVanzari(Vanzari instance);
     partial void UpdateVanzari(Vanzari instance);
     partial void DeleteVanzari(Vanzari instance);
@@ -120,19 +123,19 @@ namespace BDD_interface_like
 			}
 		}
 		
-		public System.Data.Linq.Table<Supplier> Suppliers
-		{
-			get
-			{
-				return this.GetTable<Supplier>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Optiuni> Optiunis
 		{
 			get
 			{
 				return this.GetTable<Optiuni>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Supplier> Suppliers
+		{
+			get
+			{
+				return this.GetTable<Supplier>();
 			}
 		}
 		
@@ -389,15 +392,58 @@ namespace BDD_interface_like
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Cars_Issues")]
-	public partial class Cars_Issue
+	public partial class Cars_Issue : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID_unique;
 		
 		private int _ID_car;
 		
 		private int _ID_Issue;
 		
+		private EntityRef<Issue> _Issue;
+		
+		private EntityRef<Masini> _Masini;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_uniqueChanging(int value);
+    partial void OnID_uniqueChanged();
+    partial void OnID_carChanging(int value);
+    partial void OnID_carChanged();
+    partial void OnID_IssueChanging(int value);
+    partial void OnID_IssueChanged();
+    #endregion
+		
 		public Cars_Issue()
 		{
+			this._Issue = default(EntityRef<Issue>);
+			this._Masini = default(EntityRef<Masini>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_unique", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID_unique
+		{
+			get
+			{
+				return this._ID_unique;
+			}
+			set
+			{
+				if ((this._ID_unique != value))
+				{
+					this.OnID_uniqueChanging(value);
+					this.SendPropertyChanging();
+					this._ID_unique = value;
+					this.SendPropertyChanged("ID_unique");
+					this.OnID_uniqueChanged();
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_car", DbType="Int NOT NULL")]
@@ -411,7 +457,15 @@ namespace BDD_interface_like
 			{
 				if ((this._ID_car != value))
 				{
+					if (this._Masini.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnID_carChanging(value);
+					this.SendPropertyChanging();
 					this._ID_car = value;
+					this.SendPropertyChanged("ID_car");
+					this.OnID_carChanged();
 				}
 			}
 		}
@@ -427,8 +481,104 @@ namespace BDD_interface_like
 			{
 				if ((this._ID_Issue != value))
 				{
+					if (this._Issue.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnID_IssueChanging(value);
+					this.SendPropertyChanging();
 					this._ID_Issue = value;
+					this.SendPropertyChanged("ID_Issue");
+					this.OnID_IssueChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Issue_Cars_Issue", Storage="_Issue", ThisKey="ID_Issue", OtherKey="ID_Issues", IsForeignKey=true)]
+		public Issue Issue
+		{
+			get
+			{
+				return this._Issue.Entity;
+			}
+			set
+			{
+				Issue previousValue = this._Issue.Entity;
+				if (((previousValue != value) 
+							|| (this._Issue.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Issue.Entity = null;
+						previousValue.Cars_Issues.Remove(this);
+					}
+					this._Issue.Entity = value;
+					if ((value != null))
+					{
+						value.Cars_Issues.Add(this);
+						this._ID_Issue = value.ID_Issues;
+					}
+					else
+					{
+						this._ID_Issue = default(int);
+					}
+					this.SendPropertyChanged("Issue");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Masini_Cars_Issue", Storage="_Masini", ThisKey="ID_car", OtherKey="ID_Masina", IsForeignKey=true)]
+		public Masini Masini
+		{
+			get
+			{
+				return this._Masini.Entity;
+			}
+			set
+			{
+				Masini previousValue = this._Masini.Entity;
+				if (((previousValue != value) 
+							|| (this._Masini.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Masini.Entity = null;
+						previousValue.Cars_Issues.Remove(this);
+					}
+					this._Masini.Entity = value;
+					if ((value != null))
+					{
+						value.Cars_Issues.Add(this);
+						this._ID_car = value.ID_Masina;
+					}
+					else
+					{
+						this._ID_car = default(int);
+					}
+					this.SendPropertyChanged("Masini");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -443,6 +593,8 @@ namespace BDD_interface_like
 		
 		private string _Denumire;
 		
+		private EntitySet<Cars_Issue> _Cars_Issues;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -455,10 +607,11 @@ namespace BDD_interface_like
 		
 		public Issue()
 		{
+			this._Cars_Issues = new EntitySet<Cars_Issue>(new Action<Cars_Issue>(this.attach_Cars_Issues), new Action<Cars_Issue>(this.detach_Cars_Issues));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Issues", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Issues", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int ID_Issues
 		{
 			get
@@ -498,6 +651,19 @@ namespace BDD_interface_like
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Issue_Cars_Issue", Storage="_Cars_Issues", ThisKey="ID_Issues", OtherKey="ID_Issue")]
+		public EntitySet<Cars_Issue> Cars_Issues
+		{
+			get
+			{
+				return this._Cars_Issues;
+			}
+			set
+			{
+				this._Cars_Issues.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -516,6 +682,18 @@ namespace BDD_interface_like
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Cars_Issues(Cars_Issue entity)
+		{
+			this.SendPropertyChanging();
+			entity.Issue = this;
+		}
+		
+		private void detach_Cars_Issues(Cars_Issue entity)
+		{
+			this.SendPropertyChanging();
+			entity.Issue = null;
 		}
 	}
 	
@@ -538,6 +716,8 @@ namespace BDD_interface_like
 		private System.Nullable<int> _An_Fabricatie;
 		
 		private System.Nullable<double> _Pret_Vanzare;
+		
+		private EntitySet<Cars_Issue> _Cars_Issues;
 		
 		private EntitySet<Optiuni> _Optiunis;
 		
@@ -565,6 +745,7 @@ namespace BDD_interface_like
 		
 		public Masini()
 		{
+			this._Cars_Issues = new EntitySet<Cars_Issue>(new Action<Cars_Issue>(this.attach_Cars_Issues), new Action<Cars_Issue>(this.detach_Cars_Issues));
 			this._Optiunis = new EntitySet<Optiuni>(new Action<Optiuni>(this.attach_Optiunis), new Action<Optiuni>(this.detach_Optiunis));
 			this._Supplier = default(EntityRef<Supplier>);
 			OnCreated();
@@ -714,6 +895,19 @@ namespace BDD_interface_like
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Masini_Cars_Issue", Storage="_Cars_Issues", ThisKey="ID_Masina", OtherKey="ID_car")]
+		public EntitySet<Cars_Issue> Cars_Issues
+		{
+			get
+			{
+				return this._Cars_Issues;
+			}
+			set
+			{
+				this._Cars_Issues.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Masini_Optiuni", Storage="_Optiunis", ThisKey="ID_Masina", OtherKey="ID_Masina")]
 		public EntitySet<Optiuni> Optiunis
 		{
@@ -781,6 +975,18 @@ namespace BDD_interface_like
 			}
 		}
 		
+		private void attach_Cars_Issues(Cars_Issue entity)
+		{
+			this.SendPropertyChanging();
+			entity.Masini = this;
+		}
+		
+		private void detach_Cars_Issues(Cars_Issue entity)
+		{
+			this.SendPropertyChanging();
+			entity.Masini = null;
+		}
+		
 		private void attach_Optiunis(Optiuni entity)
 		{
 			this.SendPropertyChanging();
@@ -791,240 +997,6 @@ namespace BDD_interface_like
 		{
 			this.SendPropertyChanging();
 			entity.Masini = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Suppliers")]
-	public partial class Supplier : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID_Suppliers;
-		
-		private string _Company_Name;
-		
-		private string _Country;
-		
-		private string _Region;
-		
-		private string _Address;
-		
-		private string _Phone;
-		
-		private string _Email;
-		
-		private EntitySet<Masini> _Masinis;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnID_SuppliersChanging(int value);
-    partial void OnID_SuppliersChanged();
-    partial void OnCompany_NameChanging(string value);
-    partial void OnCompany_NameChanged();
-    partial void OnCountryChanging(string value);
-    partial void OnCountryChanged();
-    partial void OnRegionChanging(string value);
-    partial void OnRegionChanged();
-    partial void OnAddressChanging(string value);
-    partial void OnAddressChanged();
-    partial void OnPhoneChanging(string value);
-    partial void OnPhoneChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    #endregion
-		
-		public Supplier()
-		{
-			this._Masinis = new EntitySet<Masini>(new Action<Masini>(this.attach_Masinis), new Action<Masini>(this.detach_Masinis));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Suppliers", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID_Suppliers
-		{
-			get
-			{
-				return this._ID_Suppliers;
-			}
-			set
-			{
-				if ((this._ID_Suppliers != value))
-				{
-					this.OnID_SuppliersChanging(value);
-					this.SendPropertyChanging();
-					this._ID_Suppliers = value;
-					this.SendPropertyChanged("ID_Suppliers");
-					this.OnID_SuppliersChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Company_Name", DbType="NVarChar(50)")]
-		public string Company_Name
-		{
-			get
-			{
-				return this._Company_Name;
-			}
-			set
-			{
-				if ((this._Company_Name != value))
-				{
-					this.OnCompany_NameChanging(value);
-					this.SendPropertyChanging();
-					this._Company_Name = value;
-					this.SendPropertyChanged("Company_Name");
-					this.OnCompany_NameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Country", DbType="NVarChar(50)")]
-		public string Country
-		{
-			get
-			{
-				return this._Country;
-			}
-			set
-			{
-				if ((this._Country != value))
-				{
-					this.OnCountryChanging(value);
-					this.SendPropertyChanging();
-					this._Country = value;
-					this.SendPropertyChanged("Country");
-					this.OnCountryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Region", DbType="NVarChar(50)")]
-		public string Region
-		{
-			get
-			{
-				return this._Region;
-			}
-			set
-			{
-				if ((this._Region != value))
-				{
-					this.OnRegionChanging(value);
-					this.SendPropertyChanging();
-					this._Region = value;
-					this.SendPropertyChanged("Region");
-					this.OnRegionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(50)")]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this.OnAddressChanging(value);
-					this.SendPropertyChanging();
-					this._Address = value;
-					this.SendPropertyChanged("Address");
-					this.OnAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(50)")]
-		public string Phone
-		{
-			get
-			{
-				return this._Phone;
-			}
-			set
-			{
-				if ((this._Phone != value))
-				{
-					this.OnPhoneChanging(value);
-					this.SendPropertyChanging();
-					this._Phone = value;
-					this.SendPropertyChanged("Phone");
-					this.OnPhoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Supplier_Masini", Storage="_Masinis", ThisKey="ID_Suppliers", OtherKey="ID_Suppliers")]
-		public EntitySet<Masini> Masinis
-		{
-			get
-			{
-				return this._Masinis;
-			}
-			set
-			{
-				this._Masinis.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Masinis(Masini entity)
-		{
-			this.SendPropertyChanging();
-			entity.Supplier = this;
-		}
-		
-		private void detach_Masinis(Masini entity)
-		{
-			this.SendPropertyChanging();
-			entity.Supplier = null;
 		}
 	}
 	
@@ -1440,6 +1412,240 @@ namespace BDD_interface_like
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Suppliers")]
+	public partial class Supplier : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID_Suppliers;
+		
+		private string _Company_Name;
+		
+		private string _Country;
+		
+		private string _Region;
+		
+		private string _Address;
+		
+		private string _Phone;
+		
+		private string _Email;
+		
+		private EntitySet<Masini> _Masinis;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_SuppliersChanging(int value);
+    partial void OnID_SuppliersChanged();
+    partial void OnCompany_NameChanging(string value);
+    partial void OnCompany_NameChanged();
+    partial void OnCountryChanging(string value);
+    partial void OnCountryChanged();
+    partial void OnRegionChanging(string value);
+    partial void OnRegionChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnPhoneChanging(string value);
+    partial void OnPhoneChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    #endregion
+		
+		public Supplier()
+		{
+			this._Masinis = new EntitySet<Masini>(new Action<Masini>(this.attach_Masinis), new Action<Masini>(this.detach_Masinis));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Suppliers", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID_Suppliers
+		{
+			get
+			{
+				return this._ID_Suppliers;
+			}
+			set
+			{
+				if ((this._ID_Suppliers != value))
+				{
+					this.OnID_SuppliersChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Suppliers = value;
+					this.SendPropertyChanged("ID_Suppliers");
+					this.OnID_SuppliersChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Company_Name", DbType="NVarChar(50)")]
+		public string Company_Name
+		{
+			get
+			{
+				return this._Company_Name;
+			}
+			set
+			{
+				if ((this._Company_Name != value))
+				{
+					this.OnCompany_NameChanging(value);
+					this.SendPropertyChanging();
+					this._Company_Name = value;
+					this.SendPropertyChanged("Company_Name");
+					this.OnCompany_NameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Country", DbType="NVarChar(50)")]
+		public string Country
+		{
+			get
+			{
+				return this._Country;
+			}
+			set
+			{
+				if ((this._Country != value))
+				{
+					this.OnCountryChanging(value);
+					this.SendPropertyChanging();
+					this._Country = value;
+					this.SendPropertyChanged("Country");
+					this.OnCountryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Region", DbType="NVarChar(50)")]
+		public string Region
+		{
+			get
+			{
+				return this._Region;
+			}
+			set
+			{
+				if ((this._Region != value))
+				{
+					this.OnRegionChanging(value);
+					this.SendPropertyChanging();
+					this._Region = value;
+					this.SendPropertyChanged("Region");
+					this.OnRegionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(50)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.OnAddressChanging(value);
+					this.SendPropertyChanging();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(50)")]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this.OnPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._Phone = value;
+					this.SendPropertyChanged("Phone");
+					this.OnPhoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Supplier_Masini", Storage="_Masinis", ThisKey="ID_Suppliers", OtherKey="ID_Suppliers")]
+		public EntitySet<Masini> Masinis
+		{
+			get
+			{
+				return this._Masinis;
+			}
+			set
+			{
+				this._Masinis.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Masinis(Masini entity)
+		{
+			this.SendPropertyChanging();
+			entity.Supplier = this;
+		}
+		
+		private void detach_Masinis(Masini entity)
+		{
+			this.SendPropertyChanging();
+			entity.Supplier = null;
 		}
 	}
 	

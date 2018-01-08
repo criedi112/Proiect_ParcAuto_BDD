@@ -31,23 +31,7 @@ namespace BDD_interface_like
         public Form_Cautare()
         {
             InitializeComponent();
-            comboBox_climatizare.Items.Add(new Item("AC Automat", "AC Automat"));
-            comboBox_climatizare.Items.Add(new Item("AC Manual", "AC Manual"));
-
-            comboBox_culoare.Items.Add(new Item("alb","alb"));
-            comboBox_culoare.Items.Add(new Item("gri", "gri"));
-            comboBox_culoare.Items.Add(new Item("argintiu", "argintiu"));
-            comboBox_culoare.Items.Add(new Item("albastru", "albastru"));
-            comboBox_culoare.Items.Add(new Item("maro", "maro"));
-            comboBox_culoare.Items.Add(new Item("rosu", "rosu"));
-
-            comboBox_faruri.Items.Add(new Item("Led", "Led"));
-            comboBox_faruri.Items.Add(new Item("Xenon", "Xenon"));
-            comboBox_faruri.Items.Add(new Item("Halogen", "Halogen"));
-
-            comboBox_tapiterie.Items.Add(new Item("piele", "piele"));
-            comboBox_tapiterie.Items.Add(new Item("textil", "textil"));
-            comboBox_tapiterie.Items.Add(new Item("alcantara", "alcantara"));
+           
 
             comboBox_Marca.Items.Add(new Item("BMW", "BMW"));
             comboBox_Marca.Items.Add(new Item("Audi", "Audi"));
@@ -180,12 +164,7 @@ namespace BDD_interface_like
 
         private void button_start_cautare_Click(object sender, EventArgs e)
         {
-            if(checkBox_4x4.Checked)
-            {
-                //MessageBox.Show("masina cu tractiune 4x4");
-            }
-            
-            MessageBox.Show(comboBox_culoare.SelectedItem.ToString());
+           
         }
     }
 }

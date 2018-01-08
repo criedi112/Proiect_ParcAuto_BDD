@@ -110,5 +110,32 @@ namespace BDD_interface_like
                 MessageBox.Show("nu ati selectat masina");
             }
         }
+
+        private void btn_optiuni_Click(object sender, EventArgs e)
+        {
+            if(dataGridView1.SelectedRows.Count>0)
+            {
+                using (Form_afisare_optiuni form_optiuni = new Form_afisare_optiuni(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()))
+                {
+                    form_optiuni.ShowDialog();
+                }
+            }
+        }
+
+        private void btn_avarii_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                using (Form_add_avarie frm = new Form_add_avarie(dataGridView1.SelectedRows[0].Cells[2].Value.ToString(), 
+                    dataGridView1.SelectedRows[0].Cells[4].Value.ToString(), dataGridView1.SelectedRows[0].Cells[0].Value.ToString()))
+                {
+                    frm.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("nu ati selectat masina");
+            }
+        }
     }
 }

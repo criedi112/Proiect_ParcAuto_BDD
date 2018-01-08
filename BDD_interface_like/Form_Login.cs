@@ -28,7 +28,7 @@ namespace BDD_interface_like
             string pass = textBox_pass.Text;
 
             var query = from r in context.Admin_users
-                        where r.Username.StartsWith(user) && r.Password.StartsWith(pass)
+                        where r.Username.Equals(user) && r.Password.Equals(pass)
                         select r;
                        
             if(query.Count() != 0 )

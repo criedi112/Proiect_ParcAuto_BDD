@@ -62,7 +62,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-7, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(197, 131);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -94,8 +94,9 @@
             this.btn_avarii.Name = "btn_avarii";
             this.btn_avarii.Size = new System.Drawing.Size(105, 23);
             this.btn_avarii.TabIndex = 5;
-            this.btn_avarii.Text = "Verifica Avarii ";
+            this.btn_avarii.Text = "Inregistrare Avarii";
             this.btn_avarii.UseVisualStyleBackColor = true;
+            this.btn_avarii.Click += new System.EventHandler(this.btn_avarii_Click);
             // 
             // btn_optiuni
             // 
@@ -105,6 +106,7 @@
             this.btn_optiuni.TabIndex = 7;
             this.btn_optiuni.Text = "Optiuni Masina";
             this.btn_optiuni.UseVisualStyleBackColor = true;
+            this.btn_optiuni.Click += new System.EventHandler(this.btn_optiuni_Click);
             // 
             // btn_cautare
             // 

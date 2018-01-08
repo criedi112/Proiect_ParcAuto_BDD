@@ -70,6 +70,18 @@
     <Compile Include="Form2_Add_Car.Designer.cs">
       <DependentUpon>Form2_Add_Car.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_add_avarie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_add_avarie.Designer.cs">
+      <DependentUpon>Form_add_avarie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_afisare_optiuni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_afisare_optiuni.Designer.cs">
+      <DependentUpon>Form_afisare_optiuni.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Cautare.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +124,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form2_Add_Car.resx">
       <DependentUpon>Form2_Add_Car.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_add_avarie.resx">
+      <DependentUpon>Form_add_avarie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_afisare_optiuni.resx">
+      <DependentUpon>Form_afisare_optiuni.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Cautare.resx">
       <DependentUpon>Form_Cautare.cs</DependentUpon>
