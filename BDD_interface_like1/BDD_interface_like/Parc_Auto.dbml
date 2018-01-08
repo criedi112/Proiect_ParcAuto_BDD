@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Parc_Auto" Class="Parc_AutoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=Parc_Auto;Integrated Security=True" SettingsObjectName="BDD_interface_like.Properties.Settings" SettingsPropertyName="Parc_AutoConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Admin_users" Member="Admin_users">
+    <Type Name="Admin_user">
+      <Column Name="Admin_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Admin_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Angajati" Member="Angajatis">
+    <Type Name="Angajati">
+      <Column Name="AngajatID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nume" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Functie" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Salariu_baza" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Angajati_Vanzari" Member="Vanzaris" ThisKey="AngajatID" OtherKey="Angajat_ID" Type="Vanzari" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cars_Issues" Member="Cars_Issues">
+    <Type Name="Cars_Issue">
+      <Column Name="ID_unique" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_car" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Issue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Issue_Cars_Issue" Member="Issue" ThisKey="ID_Issue" OtherKey="ID_Issues" Type="Issue" IsForeignKey="true" />
+      <Association Name="Masini_Cars_Issue" Member="Masini" ThisKey="ID_car" OtherKey="ID_Masina" Type="Masini" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Issues" Member="Issues">
+    <Type Name="Issue">
+      <Column Name="ID_Issues" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Denumire" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Issue_Cars_Issue" Member="Cars_Issues" ThisKey="ID_Issues" OtherKey="ID_Issue" Type="Cars_Issue" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Masini" Member="Masinis">
+    <Type Name="Masini">
+      <Column Name="ID_Masina" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Suppliers" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Model" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="VIN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="An_Fabricatie" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Pret_Vanzare" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Masini_Cars_Issue" Member="Cars_Issues" ThisKey="ID_Masina" OtherKey="ID_car" Type="Cars_Issue" />
+      <Association Name="Masini_Optiuni" Member="Optiunis" ThisKey="ID_Masina" OtherKey="ID_Masina" Type="Optiuni" />
+      <Association Name="Supplier_Masini" Member="Supplier" ThisKey="ID_Suppliers" OtherKey="ID_Suppliers" Type="Supplier" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Optiuni" Member="Optiunis">
+    <Type Name="Optiuni">
+      <Column Name="ID_optiune" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Masina" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Climatizare" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Faruri" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Tapiterie" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Culoare" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Tractiune4x4" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Navigatie" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Avariat" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Senzori_parcare" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Faruri_ceata" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Scaune_incalzite" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Comenzi_volan" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Cruise_control" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Masini_Optiuni" Member="Masini" ThisKey="ID_Masina" OtherKey="ID_Masina" Type="Masini" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Suppliers" Member="Suppliers">
+    <Type Name="Supplier">
+      <Column Name="ID_Suppliers" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Company_Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Region" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Supplier_Masini" Member="Masinis" ThisKey="ID_Suppliers" OtherKey="ID_Suppliers" Type="Masini" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vanzari" Member="Vanzaris">
+    <Type Name="Vanzari">
+      <Column Name="ID_Vanzari" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Angajat_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VIN" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Client" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Vanzator" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Pret_vanzare" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Data" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Angajati_Vanzari" Member="Angajati" ThisKey="Angajat_ID" OtherKey="AngajatID" Type="Angajati" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
