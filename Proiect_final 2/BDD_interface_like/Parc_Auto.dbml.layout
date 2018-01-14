@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 13.75, 9" name="Parc_Auto">
+  <DataContextMoniker Name="/Parc_AutoDataContext" />
+  <nestedChildShapes>
+    <classShape Id="63ee8ef8-73da-451e-bed3-21e4ead41346" absoluteBounds="0.75, 7.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/Parc_AutoDataContext/Admin_user" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0d3cf451-0167-4650-bb1b-7aa23648f59a" absoluteBounds="0.765, 7.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3d664cef-c449-4243-b86b-12d5de4b2e65" absoluteBounds="8.75, 1.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/Parc_AutoDataContext/Angajati" />
+      <nestedChildShapes>
+        <elementListCompartment Id="69ad9978-e752-4e95-9041-373e555513b1" absoluteBounds="8.765, 2.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d49e4fd7-bca2-4eed-b106-e6ad17897505" absoluteBounds="6.25, 1.625, 2, 1.3862939453125003">
+      <DataClassMoniker Name="/Parc_AutoDataContext/Cars_Issue" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bac0a122-2ba2-47d9-9c32-e0459b9f08fb" absoluteBounds="6.265, 2.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ade34629-1476-488c-8136-f3034ca2ced4" absoluteBounds="3.5, 0.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/Parc_AutoDataContext/Issue" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f0576a22-cc43-4f6e-beff-fd58e5e9a26d" absoluteBounds="3.515, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4931d387-75da-470c-b9b7-ffd9f782bb0a" absoluteBounds="3.5, 3.25, 2, 2.155499674479167">
+      <DataClassMoniker Name="/Parc_AutoDataContext/Masini" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ef4d5f84-bceb-4d93-8383-95976ca1cdc4" absoluteBounds="3.515, 3.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3e7bad88-6bb6-4958-9b52-4193d02f624c" absoluteBounds="6.25, 4.75, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/Parc_AutoDataContext/Optiuni" />
+      <nestedChildShapes>
+        <elementListCompartment Id="53f6ebff-0524-44d5-8e04-e73f785adba8" absoluteBounds="6.265, 5.21, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c534d2ef-7db1-4728-85c8-968be5775cb4" absoluteBounds="0.75, 3.25, 2, 2.155499674479167">
+      <DataClassMoniker Name="/Parc_AutoDataContext/Supplier" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6f5e65cd-c504-449d-982a-5fdf3f580d3b" absoluteBounds="0.765, 3.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4d7402e0-e988-4583-8467-5e39449dc475" absoluteBounds="11.5, 1.375, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/Parc_AutoDataContext/Vanzari" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2474b806-2ab3-4689-a449-a1dc1eb2d738" absoluteBounds="11.515, 1.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 1.78449625651042); (6.25 : 1.78449625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/Parc_AutoDataContext/Issue/Issue_Cars_Issue" />
+      <nodes>
+        <classShapeMoniker Id="ade34629-1476-488c-8136-f3034ca2ced4" />
+        <classShapeMoniker Id="d49e4fd7-bca2-4eed-b106-e6ad17897505" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 3.25); (5.875 : 2.875); (5.875 : 3.3862939453125); (6.25 : 3.0112939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/Parc_AutoDataContext/Masini/Masini_Cars_Issue" />
+      <nodes>
+        <classShapeMoniker Id="4931d387-75da-470c-b9b7-ffd9f782bb0a" />
+        <classShapeMoniker Id="d49e4fd7-bca2-4eed-b106-e6ad17897505" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 5.07774983723958); (6.25 : 5.07774983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/Parc_AutoDataContext/Masini/Masini_Optiuni" />
+      <nodes>
+        <classShapeMoniker Id="4931d387-75da-470c-b9b7-ffd9f782bb0a" />
+        <classShapeMoniker Id="3e7bad88-6bb6-4958-9b52-4193d02f624c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.32774983723958); (3.5 : 4.32774983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/Parc_AutoDataContext/Supplier/Supplier_Masini" />
+      <nodes>
+        <classShapeMoniker Id="c534d2ef-7db1-4728-85c8-968be5775cb4" />
+        <classShapeMoniker Id="4931d387-75da-470c-b9b7-ffd9f782bb0a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.75 : 2.41429768880208); (11.5 : 2.41429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/Parc_AutoDataContext/Angajati/Angajati_Vanzari" />
+      <nodes>
+        <classShapeMoniker Id="3d664cef-c449-4243-b86b-12d5de4b2e65" />
+        <classShapeMoniker Id="4d7402e0-e988-4583-8467-5e39449dc475" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
